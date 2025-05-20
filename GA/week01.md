@@ -196,7 +196,7 @@ A12)
 __________________________________________________________________________________________________________________________
 
 Q13)
-![image](images/GA1-13.png)
+![image](../images/GA1-13.png)
 How many recursive calls are made (excluding the initial call to fun(5) ) ?
 [Type]
  </br></br>
