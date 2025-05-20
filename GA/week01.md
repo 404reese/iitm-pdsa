@@ -200,7 +200,28 @@ Q13)
 ![image](images/GA1-13.png)
  </br></br>
 How many recursive calls are made (excluding the initial call to fun(5) ) ?
-[Type]
  </br></br>
 A13) 14
+__________________________________________________________________________________________________________________________
+
+Q14)
+ </br></br>
+![image](images/GA1-14.png)
+ </br></br>
+How many recursive calls (excluding the initial fun(18) ) are made?
+ </br></br>
+A14) 11
+__________________________________________________________________________________________________________________________
+
+Q15)
+ </br></br>
+![image](images/GA1-15.png)
+ </br></br>
+Select all correct statements:
+
+ </br></br>
+A15) 
+- [x] Output will be 20 20
+- [x] x and y refer to the same object.
+- [x] Method double() modifies the object in-place.
 __________________________________________________________________________________________________________________________
