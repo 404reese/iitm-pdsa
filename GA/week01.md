@@ -164,3 +164,41 @@ A10)
 - [x] name and course are object variables, and count is a class variable.
 - [x] count represents the number of objects created for class Enrollment.
 __________________________________________________________________________________________________________________________
+Q11)
+```python
+def fun(n): #n is an integer
+    if n == 0:
+        return 0
+    return (n%10) + fun(n//100)
+ ```
+What does the above code compute?
+[MCQ]
+ </br></br>
+A11)
+- The sum of alternate digits starting from the last digit
+__________________________________________________________________________________________________________________________
+
+Q12)
+```python
+def fun(n): #n is an integer
+    if n == 0:
+        return 0
+    if (n%10) % 2 == 0:
+        return 1 + fun(n//10)
+    else: 
+        return fun(n//10)
+ ```
+What is the final value returned by the function?
+[MCQ]
+ </br></br>
+A12)
+- Number of even digits
+__________________________________________________________________________________________________________________________
+
+Q13)
+![image](images/GA1-13.png)
+How many recursive calls are made (excluding the initial call to fun(5) ) ?
+[Type]
+ </br></br>
+A13) 14
+__________________________________________________________________________________________________________________________
