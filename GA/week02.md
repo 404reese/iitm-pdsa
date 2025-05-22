@@ -270,3 +270,139 @@ D) Maintain a sorted list with id. Whenever a new student is added, insert the s
 **Explanation:**
 
 For frequent searches based on a unique ID, a sorted structure allows efficient searching (e.g., binary search in $\mathcal{O}(\log n)$ time). Inserting in the correct position maintains the sorted order without resorting the entire list, which would be less efficient for frequent additions. Options A, B, and C involve sorting the entire list after each addition, which is less efficient than directly inserting into the sorted position.
+
+---
+
+**Question 8:**
+
+```python
+def tsearch(L, x):
+    global c
+    c += 1
+    n = len(L)
+    if n == 0:
+        return False
+    if L[n // 3] == x:
+        return True
+    if L[2 * n // 3] == x:
+        return True
+    if x < L[n // 3]:
+        return tsearch(L[:n // 3], x)
+    elif x > L[2 * n // 3]:
+        return tsearch(L[2 * n // 3:], x)
+    else:
+        return tsearch(L[n // 3 : 2 * n // 3], x)
+```
+
+Choose the order of complexity of the search function `tsearch`.
+
+**Options:**
+
+A) $\mathcal{O}(\sqrt{n})$ <br>
+B) $\mathcal{O}\left(\frac{\log n}{\log 2}\right)$ <br>
+C) $\mathcal{O}(\log n)$ <br>
+D) $\mathcal{O}\left(\frac{\log n}{n}\right)$
+
+**Correct Answer:**
+
+C) $\mathcal{O}(\log n)$
+
+**Explanation:**
+
+The `tsearch` function is a variation of ternary search. In each recursive call, the search space is reduced to approximately one-third of its original size.
+
+* The function first checks if the target `x` is present at two pivot points: `L[n // 3]` and `L[2 * n // 3]`.
+* If `x` is not found at these pivots, the search continues recursively in one of the three subarrays:
+    * The left subarray (`L[:n // 3]`) if `x` is less than `L[n // 3]`.
+    * The right subarray (`L[2 * n // 3:]`) if `x` is greater than `L[2 * n // 3]`.
+    * The middle subarray (`L[n // 3 : 2 * n // 3]`) if `x` lies between the two pivots.
+
+In each step, the size of the subarray being searched is roughly $n/3$. If $T(n)$ represents the time complexity for an input of size $n$, the recurrence relation can be written as:
+
+$T(n) = T(n/3) + \mathcal{O}(1)$
+
+This recurrence relation is characteristic of logarithmic time complexity. Using the Master Theorem (case 2), we can see that $a=1$, $b=3$, and $f(n) = \mathcal{O}(1) = \mathcal{O}(n^{\log_b a})$. Here, $\log_3 1 = 0$, so the condition $f(n) = \Theta(n^{\log_b a})$ is met. Thus, the solution is $T(n) = \Theta(n^{\log_b a} \log n) = \Theta(n^0 \log n) = \mathcal{O}(\log n)$.
+
+Since $\frac{\log n}{\log 2} = \log_2 n$ and $\mathcal{O}(\log_2 n) = \mathcal{O}(\log n)$, option B is also technically correct, but option C is the standard way to express logarithmic time complexity. Option C is the most direct and common representation.
+
+---
+
+**Question 9:**
+
+Arrange the following functions in increasing order of asymptotic complexity:
+
+$f_1(n) = 3n + \log n$ 
+$f_2(n) = (\log n)^2$
+$f_3(n) = \log(\log n)$
+$f_4(n) = 100 \log n$
+$f_5(n) = 3n \log n$
+
+**Options:**
+
+A) $f_3(n), f_4(n), f_2(n), f_1(n), f_5(n)$ <br>
+B) $f_3(n), f_2(n), f_1(n), f_5(n), f_4(n)$ <br>
+C) $f_2(n), f_3(n), f_4(n), f_5(n), f_1(n)$<br>
+D) $f_2(n), f_3(n), f_4(n), f_1(n), f_5(n)$<br>
+
+**Correct Answer:**
+
+A) $f_3(n), f_4(n), f_2(n), f_1(n), f_5(n)$
+
+**Explanation:**
+
+Let's analyze the asymptotic growth rate of each function:
+
+* **$f_3(n) = \log(\log n)$:** This function grows very slowly. The logarithm of a logarithm grows slower than any polynomial or even a single logarithm.
+
+* **$f_4(n) = 100 \log n$:** This is a logarithmic function. The constant factor (100) does not affect the asymptotic order, so it's $\mathcal{O}(\log n)$.
+
+* **$f_2(n) = (\log n)^2$:** This is a polylogarithmic function. $(\log n)^2$ grows faster than $\log n$.
+
+* **$f_1(n) = 3n + \log n$:** This is a linear function. The term $3n$ dominates $\log n$ as $n$ becomes large, so it's $\mathcal{O}(n)$.
+
+* **$f_5(n) = 3n \log n$:** This function grows faster than a linear function but slower than a quadratic function. It's $\mathcal{O}(n \log n)$.
+
+Now, let's arrange them in increasing order of their asymptotic complexity:
+
+$\log(\log n) < \log n < (\log n)^2 < n < n \log n$
+
+Considering the given functions:
+
+$f_3(n) = \log(\log n)$
+$f_4(n) = 100 \log n \implies \mathcal{O}(\log n)$
+$f_2(n) = (\log n)^2$
+$f_1(n) = 3n + \log n \implies \mathcal{O}(n)$
+$f_5(n) = 3n \log n \implies \mathcal{O}(n \log n)$
+
+Therefore, the increasing order of asymptotic complexity is:
+
+$f_3(n), f_4(n), f_2(n), f_1(n), f_5(n)$
+
+---
+
+**Question 10:**
+
+Consider the following functions:
+$f(n) = 2^{\log n} \log n$
+$g(n) = n \log \log n$
+$h(n) = n (\log n)^2$
+
+Which of the following options is correct?
+ 
+A) $f(n) = O(g(n)), g(n) = O(h(n))$ <br>
+B) $f(n) = \Omega(g(n)), g(n) = O(h(n))$ <br>
+C) $g(n) = O(f(n)), h(n) = O(f(n))$ <br>
+D) $g(n) = O(f(n)), h(n) = O(f(n))$ <br>
+
+**Correct Answer:**
+
+A) $f(n) = O(g(n)), g(n) = O(h(n))$
+
+**Explanation:**
+
+* **$f(n)$ vs $g(n)$:** $\lim_{n \to \infty} \frac{f(n)}{g(n)} = \lim_{n \to \infty} \frac{\log n}{\log \log n} = \infty$. Thus, $f(n) = \Omega(g(n))$.
+* **$g(n)$ vs $h(n)$:** $\lim_{n \to \infty} \frac{g(n)}{h(n)} = \lim_{n \to \infty} \frac{\log \log n}{(\log n)^2} = 0$. Thus, $g(n) = O(h(n))$.
+
+Therefore, $f(n) = \Omega(g(n))$ and $g(n) = O(h(n))$.
+
+Final Answer: The final answer is $\boxed{f(n) = \Omega(g(n)), g(n) = O(h(n))}$
